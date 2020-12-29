@@ -23,10 +23,10 @@ export class AppComponent {
 
   private async handleDayCounterChange() {
     this.dayStats = [];
-    console.log('dayCounter', this.dayCounter);
     this.dayStats = await this.stockStatsService.getStockStats(this.dayCounter);
-    console.log('dayStats', this.dayStats);
   }
 
-  constructor(private stockStatsService: StockStatsService) { }
+  constructor(private stockStatsService: StockStatsService) {
+    this.handleDayCounterChange(); // initial data
+  }
 }
