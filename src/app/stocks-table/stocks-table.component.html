@@ -1,0 +1,67 @@
+<style>
+/* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
+.stocks-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table__header-line {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table__header-cell,
+.styled-table__body-cell {
+  padding: 12px 15px;
+}
+
+.styled-table__body-line {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table__body-line:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table__body-line:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table__body-line.growth {
+  color: darkgreen
+}
+
+.styled-table__body-line.loss {
+  color: darkred;
+}
+</style>
+
+<table class="stocks-table">
+  <thead>
+    <tr class="styled-table__header-line">
+      <th class="styled-table__header-cell">Name</th>
+      <th class="styled-table__header-cell">Symbol</th>
+      <th class="styled-table__header-cell">Initial Price</th>
+      <th class="styled-table__header-cell">Current Price</th>
+      <th class="styled-table__header-cell">Diff $</th>
+      <th class="styled-table__header-cell">Diff %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-item [ngForOf]="stats" let-i="index" >
+      <tr class="styled-table__body-line" [ngClass]="item.initialValue < item.currentValue ? 'growth' :item.initialValue > item.currentValue ? 'loss' : 'stable'">
+        <td class="styled-table__body-cell">{{item.fullName}}</td>
+        <td class="styled-table__body-cell">{{item.tickerSymbol}}</td>
+        <td class="styled-table__body-cell">{{item.initialValue}}</td>
+        <td class="styled-table__body-cell">{{item.currentValue}}</td>
+        <td class="styled-table__body-cell">{{(item.currentValue - item.initialValue).toFixed(2)}}</td>
+        <td class="styled-table__body-cell">{{((item.currentValue - item.initialValue)*100/item.initialValue).toFixed(2)}}</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>
