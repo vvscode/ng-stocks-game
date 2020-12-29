@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Initial Price</th>
+      <th>Current Price</th>
+      <th>Diff $</th>
+      <th>Diff %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-item [ngForOf]="stats" let-i="index" >
+      <tr>
+        <td>{{item.fullName}}</td>
+        <td>{{item.tickerSymbol}}</td>
+        <td>{{item.initialValue}}</td>
+        <td>{{item.currentValue}}</td>
+        <td>{{(item.currentValue - item.initialValue).toFixed(2)}}</td>
+        <td>{{((item.currentValue - item.initialValue)*100/item.initialValue).toFixed(2)}}</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

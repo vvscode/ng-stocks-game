@@ -1,5 +1,21 @@
-<button type="text" class="btn btn-primary" (click)="decDayCounter()" *ngIf="dayCounter > 0">Prev</button>
-<p>{{ dayCounter }}</p>
+<style>
+  .days-navigator {
+    display: flex;
+    width: 300px;
+  }
+
+  .days-navigator-item {
+    width: 33%;
+  }
+</style>
+
+<div class="days-navigator">
+  <div class="days-navigator-item"><button type="text" class="btn btn-primary" (click)="decDayCounter()" *ngIf="dayCounter > 0">Prev</button></div>
+  <div class="days-navigator-item"><app-day-number [dayNumber]="dayCounter"></app-day-number></div>
+  <div class="days-navigator-item"><button type="text" class="btn btn-primary" (click)="incDayCounter()">Next</button></div>
+</div>
 <p>{{ dayStats.length }}</p>
-<button type="text" class="btn btn-primary" (click)="incDayCounter()">Next</button>
+<app-stocks-table [stats]="dayStats"></app-stocks-table>
+<app-day-date [dayNumber]="dayCounter"></app-day-date>
+
 
